@@ -23,9 +23,25 @@ import {IRiscZeroVerifier} from "risc0/IRiscZeroVerifier.sol";
 import {RiscZeroGroth16Verifier} from "risc0/groth16/RiscZeroGroth16Verifier.sol";
 import {ControlID} from "risc0/groth16/ControlID.sol";
 
-import {EvenNumber} from "../contracts/EvenNumber.sol";
+// Define TLSNVerifier contract inline (or import from contracts/ if you create a separate file)
+contract TLSNVerifier {
+    IRiscZeroVerifier public immutable verifier;
+    bytes32 public constant imageId = 0xd553b34e4f354f823ba263b1c7d00d17127930c3cf3d5fae2deee0259ef78a62;
 
-/// @notice Deployment script for the RISC Zero starter project.
+    constructor(IRiscZeroVerifier _verifier) {
+        verifier = _verifier;
+    }
+
+    function verify(bytes calldata seal, bytes calldata journalData) public view {
+        verifier.verify(seal, imageId, sha256(journalData));
+        (bool isValid, string memory serverName, uint256 scoreWord, string memory errorMsg)
+            = abi.decode(journalData, (bool, string, uint256, string));
+        require(isValid, errorMsg);
+        require(scoreWord > 5, "TLSN score <= 5");
+    }
+}
+
+/// @notice Deployment script for the TLSN Verifier project.
 /// @dev Use the following environment variable to control the deployment:
 ///     * Set one of these two environment variables to control the deployment wallet:
 ///         * ETH_WALLET_PRIVATE_KEY private key of the wallet account.
@@ -36,7 +52,7 @@ import {EvenNumber} from "../contracts/EvenNumber.sol";
 ///
 /// https://book.getfoundry.sh/tutorials/solidity-scripting
 /// https://book.getfoundry.sh/reference/forge/forge-script
-contract EvenNumberDeploy is Script, RiscZeroCheats {
+contract TLSNVerifierDeploy is Script, RiscZeroCheats {
     // Path to deployment config file, relative to the project root.
     string constant CONFIG_FILE = "script/config.toml";
 
@@ -94,9 +110,9 @@ contract EvenNumberDeploy is Script, RiscZeroCheats {
             console2.log("Using IRiscZeroVerifier contract deployed at", address(verifier));
         }
 
-        // Deploy the application contract.
-        EvenNumber evenNumber = new EvenNumber(verifier);
-        console2.log("Deployed EvenNumber to", address(evenNumber));
+        // Deploy the TLSNVerifier contract.
+        TLSNVerifier tlsnVerifier = new TLSNVerifier(verifier);
+        console2.log("Deployed TLSNVerifier to", address(tlsnVerifier));
 
         vm.stopBroadcast();
     }

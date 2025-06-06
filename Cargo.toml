@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["apps", "methods"]
+members = ["apps", "methods", "methods/guest",]
 exclude = ["lib"]
 
 [workspace.package]
@@ -29,3 +29,10 @@ url = { version = "2.5" }
 [profile.release]
 debug = 1
 lto = true
+
+[patch.crates-io]
+ring = { path = "ring-patched" }
+
+
+
+

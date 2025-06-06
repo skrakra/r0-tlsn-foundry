@@ -22,6 +22,7 @@ const SOLIDITY_IMAGE_ID_PATH: &str = "../contracts/ImageID.sol";
 const SOLIDITY_ELF_PATH: &str = "../tests/Elf.sol";
 
 fn main() {
+    println!("cargo:warning=>>> pimmel methods/build.rs is running now");
     git_submodule_init();
     check_submodule_state();
 
@@ -34,6 +35,11 @@ fn main() {
     if env::var("RISC0_USE_DOCKER").is_ok() {
         let docker_options = DockerOptionsBuilder::default()
             .root_dir(manifest_dir.join("../"))
+            // Pass a vector of (key, value) tuples for environment variables.
+            .env(vec![(
+                "CFLAGS_riscv32im_risc0_zkvm_elf".to_string(),
+                "-march=rv32im -nostdlib -fno-stack-protector".to_string(),
+            )])
             .build()
             .unwrap();
         builder.use_docker(docker_options);
