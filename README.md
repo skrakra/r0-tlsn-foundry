@@ -1,12 +1,12 @@
 # TLSN Verifier with Risc0 and Foundry
 
-Prove and verify TLSNotary proofs with the RISC0 zkVM and validate results in your Ethereum smart contracts.
+> Verify TLSNotary proofs of HTTPS session integrity inside the RISC0 zkVM, and publish the resulting zero-knowledge proof on-chain.
 
 This repository extends the RISC Zero Foundry Template to integrate TLSN proof verification inside the RISC Zero zkVM:
 
 1. Execute TLSN verification logic off-chain in the zkVM.  
 2. Parse a score from the TLSNotary proof and assert it exceeds a specified threshold. 
-3. Generate a Risc0 STARK and convert to SNARK using Bonsai or locally (only Linux supported) 
+3. Generate a Risc0 STARK and convert to SNARK using Bonsai or locally (only Linux supported).
 4. Submit and verify the SNARK proof on-chain via a Solidity verifier contract.
 
 ## Dependencies
