@@ -21,31 +21,34 @@ Install the following prerequisites:
 
 ## CLI
 
+Update the submodule for risc0-ethereum 
 ```sh
-# update the submodule for risc0-ethereum 
 git submodule update --init
-# From project root, make the RISC-V linker script executable:
+```
+From project root, make the RISC-V linker script executable:
+```sh
 chmod +x riscv32im-linker.sh
-
-# Export environment variables so Cargo/rustc inside the R0 container uses it:
+```
+Export environment variables so Cargo/rustc inside the R0 container uses it:
+```sh
 export HOST_LINKER="$PWD/riscv32im-linker.sh"
-
-# Build the entire workspace in release mode using Docker and the custom linker:
+```
+Build the entire workspace in release mode using Docker and the custom linker:
+```sh
 RISC0_USE_DOCKER=1 \
   CARGO_TARGET_RISCV32IM_RISC0_ZKVM_ELF_LINKER="$HOST_LINKER" \
   cargo build --workspace --release
-
-# optional: if you have bonsai api access otherwise you need to run this in a fully linux env as no other platform is supported yet: 
+```
+Optional: if you have bonsai api access otherwise you need to run this in a fully linux env as no other platform is supported yet: 
+```sh
 export BONSAI_API_KEY="YOUR_API_KEY"
 export BONSAI_API_URL="https://rpc.bonsai.risc0.com"
-
-# Start Anvil in a seperate shell
+```
+Start Anvil in a seperate shell
+```sh
 anvil
-
-## Run Publisher to Submit a Contract Transaction
-
+```
 Run the following command to submit a contract transaction (copy the required values from your Anvil instance):
-
 ```sh
 cargo run --release --bin publisher -- \
   --chain-id 31337 \                # copy from anvil
