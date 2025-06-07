@@ -1,19 +1,3 @@
-// Copyright 2024 RISC Zero, Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
-// SPDX-License-Identifier: Apache-2.0
-
 pragma solidity ^0.8.20;
 
 import {Script} from "forge-std/Script.sol";
@@ -23,7 +7,6 @@ import {IRiscZeroVerifier} from "risc0/IRiscZeroVerifier.sol";
 import {RiscZeroGroth16Verifier} from "risc0/groth16/RiscZeroGroth16Verifier.sol";
 import {ControlID} from "risc0/groth16/ControlID.sol";
 
-// Define TLSNVerifier contract inline (or import from contracts/ if you create a separate file)
 contract TLSNVerifier {
     IRiscZeroVerifier public immutable verifier;
     bytes32 public constant imageId = 0xd553b34e4f354f823ba263b1c7d00d17127930c3cf3d5fae2deee0259ef78a62;
@@ -41,17 +24,6 @@ contract TLSNVerifier {
     }
 }
 
-/// @notice Deployment script for the TLSN Verifier project.
-/// @dev Use the following environment variable to control the deployment:
-///     * Set one of these two environment variables to control the deployment wallet:
-///         * ETH_WALLET_PRIVATE_KEY private key of the wallet account.
-///         * ETH_WALLET_ADDRESS address of the wallet account.
-///
-/// See the Foundry documentation for more information about Solidity scripts,
-/// including information about wallet options.
-///
-/// https://book.getfoundry.sh/tutorials/solidity-scripting
-/// https://book.getfoundry.sh/reference/forge/forge-script
 contract TLSNVerifierDeploy is Script, RiscZeroCheats {
     // Path to deployment config file, relative to the project root.
     string constant CONFIG_FILE = "script/config.toml";

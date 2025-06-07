@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-#
 # Link wrapper for RISC-Zero guest via clang+lld
 
 forward=()

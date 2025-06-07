@@ -2428,23 +2428,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "guests"
-version = "0.1.0"
-dependencies = [
- "alloy-primitives",
- "alloy-sol-types",
- "bincode",
- "getrandom 0.3.3",
- "hex",
- "p256",
- "risc0-zkvm",
- "risc0-zkvm-platform",
- "serde",
- "serde_json",
- "tlsn-core",
-]
-
-[[package]]
 name = "hashbrown"
 version = "0.12.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5037,6 +5020,23 @@ dependencies = [
 name = "tlsn-utils"
 version = "0.1.0"
 source = "git+https://github.com/tlsnotary/tlsn-utils?rev=6650a95#6650a956d3597d3a662fd9c15a64a1651afac399"
+
+[[package]]
+name = "tlsn_verifier_guest"
+version = "0.1.0"
+dependencies = [
+ "alloy-primitives",
+ "alloy-sol-types",
+ "bincode",
+ "getrandom 0.3.3",
+ "hex",
+ "p256",
+ "risc0-zkvm",
+ "risc0-zkvm-platform",
+ "serde",
+ "serde_json",
+ "tlsn-core",
+]
 
 [[package]]
 name = "tokio"

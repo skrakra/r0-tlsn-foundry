@@ -22,7 +22,6 @@ const SOLIDITY_IMAGE_ID_PATH: &str = "../contracts/ImageID.sol";
 const SOLIDITY_ELF_PATH: &str = "../tests/Elf.sol";
 
 fn main() {
-    println!("cargo:warning=>>> pimmel methods/build.rs is running now");
     git_submodule_init();
     check_submodule_state();
 
@@ -47,7 +46,7 @@ fn main() {
     let guest_options = builder.build().unwrap();
 
     // Generate Rust source files for the methods crate.
-    let guests = embed_methods_with_options(HashMap::from([("guests", guest_options)]));
+    let guests = embed_methods_with_options(HashMap::from([("tlsn_verifier_guest", guest_options)]));
 
     // Generate Solidity source files for use with Forge.
     let solidity_opts = risc0_build_ethereum::Options::default()

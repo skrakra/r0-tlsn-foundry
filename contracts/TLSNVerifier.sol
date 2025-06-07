@@ -7,7 +7,7 @@ import "./ImageID.sol";
 
 contract TLSNVerifier {
     IRiscZeroVerifier public immutable verifier;
-    bytes32 public constant imageId = ImageID.MAIN_ID;
+    bytes32 public constant imageId = ImageID.TLSN_VERIFIER_ID;
     
     constructor(IRiscZeroVerifier _verifier) {
         verifier = _verifier;
@@ -20,6 +20,6 @@ contract TLSNVerifier {
             = abi.decode(journalData, (bool, string, uint256, string));
         
         require(isValid, errorMsg);
-        require(scoreWord > 5, "TLSN score <= 5");
+        require(scoreWord > 5, "TLSN score > 5");
     }
 }

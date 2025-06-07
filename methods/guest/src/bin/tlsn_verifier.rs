@@ -150,11 +150,9 @@ fn main() {
         }
     }
 
-    // ───────────────────────────────────────────────
-    // 9. NOW: ABI-encode for on-chain consumption
-    //    We manually encode the struct fields as a tuple
-    //    (bool, string, uint256, string)
-    //
+    // 9. ABI-encode for on-chain consumption
+    // manually encode the struct fields as a tuple
+    // (bool, string, uint256, string)
     let sol_score: U256 = match output.score {
         Some(val) if val > 0 => U256::from(val),
         _ => U256::from(0u8),
@@ -171,5 +169,4 @@ fn main() {
 
     // Commit the ABI-encoded journal bytes (so the on-chain verifier can decode them).
     env::commit_slice(encoded_journal.as_slice());
-    // ───────────────────────────────────────────────
 }

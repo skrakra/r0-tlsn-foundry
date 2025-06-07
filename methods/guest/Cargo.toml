@@ -1,11 +1,11 @@
 [package]
-name = "guests"
+name = "tlsn_verifier_guest"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "main"
-path = "src/bin/main.rs"
+name = "tlsn_verifier"
+path = "src/bin/tlsn_verifier.rs"
 
 [dependencies]
 

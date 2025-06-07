@@ -10,7 +10,6 @@ contract DummyVerifier is IRiscZeroVerifier {
     function verifyIntegrity(Receipt calldata) external pure override {}
 }
 
-// Your contract under test
 contract TLSNVerifier {
     IRiscZeroVerifier public immutable verifier;
     bytes32 public constant imageId = 0xd553b34e4f354f823ba263b1c7d00d17127930c3cf3d5fae2deee0259ef78a62;
