@@ -1,6 +1,6 @@
 # TLSN Verifier with Risc0 and Foundry
 
-> Prove and verify [TLSNotary][tlsn-repo] (TLSN) proofs with the [RISC Zero zkVM][docs-zkvm] and validate results in your Ethereum smart contracts.
+> Prove and verify TLSNotary proofs with the RISC0 zkVM and validate results in your Ethereum smart contracts.
 
 This repository extends the RISC Zero Foundry Template to integrate TLSN proof verification inside the RISC Zero zkVM:
 
